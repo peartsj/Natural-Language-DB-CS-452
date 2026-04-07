@@ -1,0 +1,9 @@
+config.json
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+media_library.db
+.env
+.DS_Store
