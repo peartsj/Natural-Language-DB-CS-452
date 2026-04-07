@@ -109,3 +109,10 @@ Why this confused the app:
 
 I tried to see if I could reword the prompt in such a way that it would confuse the model, and it worked. Telling it to list each title only once, it removed the duplicate titles even though they are really separate items. The provided SQL only returns distinct titles, which removes mention of items when their names are the same, as was the case with Dune. Honestly its a mistake even a human could make and it took some tricky wording to get it to mess up.
 
+## Prompting strategies I tried
+
+Most of my prompts were zero-shot, meaning I just asked the question in natural language and relied on the schema context for the model to figure out the SQL. Zero-shot worked pretty well when I used clear requirements like “grouped by creator” and “only include creators with more than 1 item”, because those phrases map directly to `GROUP BY` and `HAVING` in SQL.
+
+I also tried a more few-shot style by including more explicit constraints in the prompt (like how to format the output and what to deduplicate). That sometimes improved the structure of the SQL, but it also showed a downside: if the prompt wording is slightly ambiguous (like saying “list each title only once” when I really cared about separate items), the model will follow the literal instruction and produce SQL that matches the words but not the intent. In other words, the more you constrain the prompt, the more important it is that the constraints match what you actually want counted (titles vs items, distinct titles vs distinct item IDs).
+
+
