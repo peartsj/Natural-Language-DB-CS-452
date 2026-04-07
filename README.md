@@ -99,11 +99,6 @@ Three creators matched your criteria (more than one item). Their names and title
 - Hayao Miyazaki: Spirited Away; Starting Point: 1979-1996
 - J. R. R. Tolkien: The Hobbit; The Lord of the Rings: The Fellowship of the Ring; Middle-earth: Shadow of Mordor
 ```
-
-Why this confused the app:
-
-- The prompt explicitly asked to "list each title only once", so the SQL deduplicates by `title`. That collapses different items that share a title (for example, a movie and a book both named "Dune") into a single entry.
-- The provided SQL uses `DISTINCT i.title` in a subquery, which matches the literal prompt but not the user's expectation of counting distinct items separately.
  
 ### Why this didn't work well
 
